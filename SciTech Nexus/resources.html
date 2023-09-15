@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiment Resources - SciTech Nexus</title>
+    <style>
+        /* Add your custom CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        header {
+            background-color: #007acc;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+        nav {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 20px;
+        }
+        .container {
+            max-width: 960px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+        }
+        h1 {
+            color: #007acc;
+            text-align: center;
+        }
+        /* Style for the resource sections */
+        .resource-section {
+            margin: 20px 0;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            transition: max-height 0.5s ease-out;
+            overflow: hidden;
+        }
+        .resource-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #007acc;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .resource-title .arrow {
+            font-size: 24px;
+            transition: transform 0.3s;
+            transform: rotate(0deg); /* Initially pointing to the right */
+        }
+        .resource-content {
+            display: none;
+            padding-top: 10px; /* Add padding for spacing when content is visible */
+        }
+        .resource-content a {
+            display: block;
+            margin: 10px 0;
+            color: #007acc;
+            text-decoration: none;
+        }
+        .resource-content a:hover {
+            text-decoration: underline;
+        }
+        .expanded .arrow {
+            transform: rotate(90deg); /* Rotated to point downward when expanded */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Experiment Resources</h1>
+    </header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="projects.html">Projects</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+    <div class="container">
+        <div class="resource-section">
+            <h2 class="resource-title">Resources by Students <span class="arrow">&#x25B6;</span></h2>
+            <div class="resource-content">
+                <a href="#">Student Resource 1</a>
+                <a href="#">Student Resource 2</a>
+                <a href="#">Student Resource 3</a>
+            </div>
+        </div>
+
+        <div class="resource-section">
+            <h2 class="resource-title">Best Resources in the World <span class="arrow">&#x25B6;</span></h2>
+            <div class="resource-content">
+                <a href="#">World Resource 1</a>
+                <a href="#">World Resource 2</a>
+                <a href="#">World Resource 3</a>
+            </div>
+        </div>
+
+        <div class="resource-section">
+            <h2 class="resource-title">More Resources <span class="arrow">&#x25B6;</span></h2>
+            <div class="resource-content">
+                <a href="#">Resource 1</a>
+                <a href="#">Resource 2</a>
+                <a href="#">Resource 3</a>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 SciTech Nexus</p>
+        </div>
+    </footer>
+
+    <script>
+        const resourceSections = document.querySelectorAll('.resource-section');
+        
+        resourceSections.forEach(section => {
+            const title = section.querySelector('.resource-title');
+            const content = section.querySelector('.resource-content');
+            
+            title.addEventListener('click', () => {
+                // Toggle the visibility of content
+                if (content.style.display === 'block') {
+                    content.style.display = 'none';
+                    title.classList.remove('expanded');
+                } else {
+                    // Hide other open sections
+                    resourceSections.forEach(otherSection => {
+                        const otherTitle = otherSection.querySelector('.resource-title');
+                        const otherContent = otherSection.querySelector('.resource-content');
+                        
+                        if (otherSection !== section && otherContent.style.display === 'block') {
+                            otherContent.style.display = 'none';
+                            otherTitle.classList.remove('expanded');
+                        }
+                    });
+                    
+                    content.style.display = 'block';
+                    title.classList.add('expanded');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
